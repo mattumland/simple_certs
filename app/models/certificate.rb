@@ -1,4 +1,6 @@
 class Certificate < ApplicationRecord
+  include Loggable
+
   belongs_to :generator
   belongs_to :generation
   has_many :certificate_quantities
@@ -14,7 +16,6 @@ class Certificate < ApplicationRecord
   def assign_serial_number
     self.sn_base = "#{vintage_date.strftime('%Y-%m')}-#{SecureRandom.hex[0..7]}"
   end
-
 
   def create_certificate_quantity
     self.certificate_quantities << CertificateQuantity.new(

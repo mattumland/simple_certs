@@ -1,4 +1,6 @@
 class Generation < ApplicationRecord
+  include Loggable
+
   belongs_to :generator
   has_one :certificate
 
